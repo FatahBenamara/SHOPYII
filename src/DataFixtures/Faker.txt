@@ -1,0 +1,80 @@
+    
+    ***MEMBREFIXTURE***SANS CLE ETRANGERE
+    --------------------
+
+
+    ->setEmail("admin@shopy.com")
+    ->setRole("ROLE_ADMIN")
+    ->setPassword(password_hash("admin", PASSWORD_DEFAULT))
+    ->setPseudo("admin")
+    ->setNom($this->faker->lastName)
+    ->setPrenom($this->faker->firstName)
+    ->setCivilite($this->faker->randomElement(["H", "F", "A"]))
+    ->setVille($this->faker->city)
+    ->setCodePostal($this->faker->randomNumber($nbDigits = 5, $strict = true))
+    ->setAdresse($this->faker->streetAddress);
+
+    BaseFixture
+    loadData
+    $this->createMany(10, "membre", function ($num) {
+
+            ->setEmail("membre" . $num . "@yopmail.com");
+            ->setPassword(password_hash("membre".$num, PASSWORD_DEFAULT));
+            ->setNom($this ->faker->lastName);
+            ->setPrenom($this ->faker->FirstName);
+            
+            ->setAdresse($this ->faker->Address);
+            ->setCodePostal(substr($this ->faker->postcode, 0, 5));
+            ->setVille(substr($this ->faker->City, 0, 20) );
+            ->setRole("ROLE_USER");
+            ->setPseudo("membre" .$num);
+            ->setCivilite($this ->faker->randomElement(["h", "f", "a"]));
+
+            
+        });
+
+***PRODUIT***
+--------------------
+
+->setCategorie($this->faker->words($nb = 3, $asText = true))
+->setStock($this->faker->randomNumber(3))
+->setPrix($this->faker->randomNumber(5))
+->setPhoto($this->faker->numberBetween($min=1, $max= 5) . ".jpg")
+->setPublic($this->faker->suffix)
+->setTaille($this ->faker->randomElement(["XL", "XXL", "M"]))
+->setCouleur($this->faker->colorName)
+->setDescription($this->faker->sentences($nb = 1, $variableNbSentences = true))
+->setTitre($this->faker->realText(10))
+->setReference($this->faker->word)
+
+
+***COMMANDE***
+--------------------
+//use Doctrine\Common\DataFixtures\DependentFixtureInterface as Dependent;
+class IFixtures extends BaseFixture //implements Dependent
+
+->setMembre($this->getRandomReference("membre")) ^^
+->setEtat($this->faker->randomElement(["en cours", "en attente", "livrée"]))
+->setDateEnregistrement($this->faker->dateTime())
+->setMontant($this->faker->randomNumber(5))
+
+    //public function getDependencies(){
+        // j'indique les fixtures qui doivent être lancées avant la fixture actuelle
+        //return [ MembreFixtures::class ];
+    //}
+
+***DETAIL***
+--------------------
+//use Doctrine\Common\DataFixtures\DependentFixtureInterface as Dependent;
+class IFixtures extends BaseFixture //implements Dependent
+
+
+->setProduit($this->getRandomReference("produit")) ^^
+->setCommande($this->getRandomReference("commande")) ^^
+->setPrix($this->faker->randomNumber(3))
+->setQuantite($this->faker->randomNumber(2))
+
+    //public function getDependencies(){
+        // j'indique les fixtures qui doivent être lancées avant la fixture actuelle
+        //return [ ProduitFixtures::class, CommandeFixtures::class];
+    //}

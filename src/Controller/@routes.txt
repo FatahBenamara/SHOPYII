@@ -1,0 +1,74 @@
+
+------------
+***HOME**
+-------------
+@Route("/", name="home")
+return ('home/index.html.twig')
+
+---------------
+***CONNEXION/SECURITY**
+---------------
+@Route("/login", name="app_login")
+    return ('security/login.html.twig')
+@Route("/logout", name="app_logout")
+    x
+
+-------------
+***PRODUIT**
+-------------
+@Route("/admin/produit", name="produit_index", methods={"GET"})
+    return ('produit/index.html.twig')
+
+@Route("/admin/produit/new", name="produit_new", methods={"GET","POST"})
+    return ('produit_index')
+    return ('produit/new.html.twig')
+
+@Route("/admin/produit/{id}", name="produit_show", methods={"GET"})
+    return ('produit/show.html.twig')
+
+@Route("/admin/produit/{id}/edit", name="produit_edit", methods={"GET","POST"})
+    return ('produit_index')
+    return ('produit/edit.html.twig')
+
+@Route("/admin/produit/{id}", name="produit_delete", methods={"DELETE"})
+    return ('produit_index')
+
+---------------
+***COMMANDE***
+---------------
+@Route("/admin/commande", name="commande_index", methods={"GET"})
+    return ('commande/index.html.twig')
+
+@Route("/admin/commande/new", name="commande_new", methods={"GET","POST"})
+    return ('commande_index')
+    return ('commande/new.html.twig')
+
+@Route("/admin/commande/{id}", name="commande_show", methods={"GET"})
+    return ('commande/show.html.twig' )
+
+@Route("/admin/commande/{id}/edit", name="commande_edit", methods={"GET","POST"})
+    return ('commande_index')
+    return ('commande/edit.html.twig')
+
+@Route("/admin/commande/{id}", name="commande_delete", methods={"DELETE"})
+    return $this->redirectToRoute('commande_index')
+
+-------------
+***DETAIL***
+--------------
+@Route("/detail", name="detail_index", methods={"GET"}) 
+    return $this->render('detail/index.html.twig')
+
+@Route("/detail/new", name="detail_new", methods={"GET","POST"})
+    return ('detail_index');
+    return ('detail/new.html.twig')
+
+@Route("/detail/{id}", name="detail_show", methods={"GET"})
+    return ('detail/show.html.twig')
+
+@Route("/detail/{id}/edit", name="detail_edit", methods={"GET","POST"})
+    return ('detail_index')
+    return $this->render('detail/edit.html.twig' );
+
+ @Route("/detail/{id}", name="detail_delete", methods={"DELETE"})
+    return $this->redirectToRoute('detail_index');

@@ -70,6 +70,11 @@ class Membre implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $prenom;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -251,6 +256,18 @@ class Membre implements UserInterface
                 $commande->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

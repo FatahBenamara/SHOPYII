@@ -1,0 +1,9 @@
+***Gestion post/ ->add('photo')*** 
+----------------------------
+$photoUploade = $form->get("photo")->getData();
+$nomPhoto = pathinfo($photoUploade->getClientOriginalName(), PATHINFO_FILENAME);
+
+$nomPhoto = str_replace(" ", "_", $nomPhoto);
+$nomPhoto .= uniqid() . "." . $photoUploade->guessExtension();
+$photoUploade->move("images", $nomPhoto);
+$produit->setPhoto($nomPhoto);
