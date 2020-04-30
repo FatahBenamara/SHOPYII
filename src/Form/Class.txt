@@ -1,77 +1,34 @@
 ***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-->add('photo', FileType::class, [ "mapped" => false, "help" => "* requis" ])
-
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-->add('titre', TextType::class, [ "label" => "Titre du produit", "constraints" => [ new Constraints\Length([ "min" => 3, "max" => 20,
-                                                                                                                         "minMessage" => "Le titre doit avoir au moins 3 caractères",
-                                                                                                                         "maxMessage" => "Le titre ne peut avoir plus de 20 caractères"
-                                                                                                                        ]) ]  ])
-
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type;      
-->add('roles', Type\ChoiceType::class, ["choices"=> 
-             ["abonné"=> "ROLE_USER", "bibliothècaire"=>"ROLE_ADMIN"],
-            "multiple"=>true,
-            "label"=> "Role"                        
-							])
-
----------------------------------------------
-***USE******TYPE***
+-----------------
+***CommandeType***
+-----------------
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Livre;
-use App\Entity\Abonne;
-->add('livre', EntityType::class, [ "class" => Livre::class, "choice_label" => "titre" ] )
+use App\Entity\Membre;
+->add('membre' , EntityType::class, [ "class" => Membre::class, "choice_label" => "email" ])
+
+-----------------
+***DetailType***
+-----------------
+
+            ->add('prix', MoneyType::class, ["constraints" => [
+                new Constraints\Range(
+                    [
+                        'min' => 10,
+                        'max' => 1500,
+                        'minMessage' => 'Le prix doit être de 10€ au minimum',
+                        'maxMessage' => 'Le prix doit être de  {{ limit }}€ au maximum',
+                    ]
+                )
+
+            ]])
+
+            ->add('commande', EntityType::class, ["class" => Commande::class, "choice_label" => "etat"])
+            ->add('produit', EntityType::class, ["class" => Produit::class, "choice_label" => "couleur"]);
 
 
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type;
-use Symfony\Component\Validator\Constraints; 
-->add('password', Type\PasswordType::class,["mapped"=> false,
-                                                        "constraints"=>[new Constraints\Length(["min"=>6,
-                                                        "minMessage"=>"le mot de passe doit contenir au moins {{limit}} caractéres"  ])]            
-            
-                                                        ]);
-//////////////
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Password;
 
-    public function new(Request $request, Password $passwordEncoder): Response
-    {
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $abonne->setPassword( $passwordEncoder->encodePassword($abonne, $form->get("password")->getData()) );
-           
-            $entityManager->persist($abonne);
-            
-        }
 
-       
-	}
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Validator\Constraints; 
 
-->add('stock', NumberType::class, [ "help" => "Le stock doit être supérieur à 0", "constraints" => [ new Constraints\Positive( [ "message" => "Vous devez taper un nombre positif" ] ) ] ])
 
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-->add('prix', MoneyType::class, ["constraints" => [ 
-    new Constraints\Range( [
-        'min' => 10,
-        'max' => 1500,
-        'minMessage' => 'Le prix doit être de 10€ au minimum',
-        'maxMessage' => 'Le prix doit être de  {{ limit }}€ au maximum',
-    ]) 
 
-  ]])
 
----------------------------------------------
-***USE******TYPE***
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-->add('date_rendu', DateType::class, [ "widget" => "single_text", "required" => false ]) // dateRendu est null dans la creation de table

@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Commande;
+use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class CommandeType extends AbstractType
 {
@@ -15,7 +18,7 @@ class CommandeType extends AbstractType
             ->add('montant')
             ->add('date_enregistrement')
             ->add('etat')
-            ->add('membre')
+            ->add('membre' , EntityType::class, [ "class" => Membre::class, "choice_label" => "email" ])
         ;
     }
 

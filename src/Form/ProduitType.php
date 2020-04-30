@@ -18,16 +18,20 @@ class ProduitType extends AbstractType
     {
         $builder
             ->add('reference', TextType::class, ["label" => "Référence"])
+
             ->add('titre', TextType::class, ["label" => "Titre du produit", "constraints" => [new Constraints\Length([
                 "min" => 3, "max" => 20,
                 "minMessage" => "Le titre doit avoir au moins 3 caractères",
                 "maxMessage" => "Le titre ne peut avoir plus de 20 caractères"
             ])]])
+
             ->add('description')
             ->add('couleur')
             ->add('taille')
             ->add('public')
+
             ->add('photo', Input\FileType::class, ["label" => "Images", "mapped" => false, "help" => "* requis"])
+
             ->add('prix', MoneyType::class, ["constraints" => [
                 new Constraints\Range([
                     'min' => 10,
@@ -37,8 +41,10 @@ class ProduitType extends AbstractType
                 ])
 
             ]])
+            
             ->add('stock', NumberType::class, ["help" => "Le stock doit être supérieur à 0", "constraints" =>
             [new Constraints\Positive(["message" => "Vous devez taper un nombre positif"])]])
+
             ->add('categorie');
     }
 

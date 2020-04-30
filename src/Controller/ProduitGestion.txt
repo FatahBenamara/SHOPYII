@@ -1,5 +1,7 @@
-***Gestion post/ ->add('photo')*** 
-----------------------------
+***Gestion post/ New*** 
+---------------------------
+->add('photo')
+--------------
 $photoUploade = $form->get("photo")->getData();
 $nomPhoto = pathinfo($photoUploade->getClientOriginalName(), PATHINFO_FILENAME);
 
