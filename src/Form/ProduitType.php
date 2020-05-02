@@ -6,7 +6,7 @@ use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type as Input;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Validator\Constraints;
@@ -30,7 +30,7 @@ class ProduitType extends AbstractType
             ->add('taille')
             ->add('public')
 
-            ->add('photo', Input\FileType::class, ["label" => "Images", "mapped" => false, "help" => "* requis"])
+            ->add('photo', FileType::class, ["label" => "images", "mapped" => false, "help" => "* requis"])
 
             ->add('prix', MoneyType::class, ["constraints" => [
                 new Constraints\Range([

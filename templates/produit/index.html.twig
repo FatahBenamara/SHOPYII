@@ -32,7 +32,8 @@
                 <td>{{ produit.couleur }}</td>
                 <td>{{ produit.taille }}</td>
                 <td>{{ produit.public }}</td>
-                <td>{{ produit.photo }}</td>
+               {# <td>{{ produit.photo }}</td>#}
+                <td><img class="" src="{{ asset("images/" ~ produit.photo) }} " width="140" height="140"></td>
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.stock }}</td>
                 <td>{{ produit.categorie }}</td>

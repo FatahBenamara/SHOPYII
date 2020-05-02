@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/detail")
- */
+
 class DetailController extends AbstractController
 {
     /**
-     * @Route("/", name="detail_index", methods={"GET"})
+     * @Route("/admin/detail", name="detail_index", methods={"GET"})
      */
     public function index(DetailRepository $detailRepository): Response
     {
@@ -26,7 +24,7 @@ class DetailController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="detail_new", methods={"GET","POST"})
+     * @Route("/admin/detail/new", name="detail_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +47,7 @@ class DetailController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="detail_show", methods={"GET"})
+     * @Route("/admin/detail/{id}", name="detail_show", methods={"GET"})
      */
     public function show(Detail $detail): Response
     {
@@ -59,7 +57,7 @@ class DetailController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="detail_edit", methods={"GET","POST"})
+     * @Route("/admin/detail/{id}/edit", name="detail_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Detail $detail): Response
     {
@@ -79,7 +77,7 @@ class DetailController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="detail_delete", methods={"DELETE"})
+     * @Route("/admin/detail/{id}", name="detail_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Detail $detail): Response
     {

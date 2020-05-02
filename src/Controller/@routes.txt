@@ -72,3 +72,29 @@ return ('home/index.html.twig')
 
  @Route("/detail/{id}", name="detail_delete", methods={"DELETE"})
     return $this->redirectToRoute('detail_index');
+
+-------------
+***MEMBRE***
+--------------
+@Route("/admin/membre", name="membre_index", methods={"GET"})
+    return $this->render('membre/index.html.twig')
+
+@Route("/admin/membre/new", name="membre_new", methods={"GET","POST"})
+    return $this->redirectToRoute('membre_index')
+    return $this->render('membre/new.html.twig')
+
+@Route("/admin/membre/{id}", name="membre_show", methods={"GET"})
+    return $this->render('membre/show.html.twig')
+
+@Route("/admin/membre/{id}/edit", name="membre_edit", methods={"GET","POST"})
+    return $this->redirectToRoute('membre_index')
+    return $this->render('membre/edit.html.twig')
+
+@Route("/admin/membre/{id}", name="membre_delete", methods={"DELETE"})
+    return $this->redirectToRoute('membre_index')
+
+-----------------
+***INSCRIPTION***
+------------------
+@Route("/register", name="app_register")
+    return $this->render('registration/register.html.twig')
