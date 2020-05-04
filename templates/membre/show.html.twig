@@ -54,6 +54,40 @@
         </tbody>
     </table>
 
+
+    <h1>Nombre de Commande: {{membre.commandes|length}} </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Montant</th>
+                <th>Date_enregistrement</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in membre.commandes %}
+            <tr>
+                
+                <td>{{ commande.montant }}</td>
+                <td>{{ commande.dateEnregistrement ? commande.dateEnregistrement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.etat }}</td>
+                <td>
+                    <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
+                    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
     <a href="{{ path('membre_index') }}">back to list</a>
 
     <a href="{{ path('membre_edit', {'id': membre.id}) }}">edit</a>

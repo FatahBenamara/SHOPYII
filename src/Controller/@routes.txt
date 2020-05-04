@@ -3,7 +3,7 @@
 ***HOME**
 -------------
 @Route("/", name="home")
-return ('home/index.html.twig')
+return ('home/index.html.twig') => return ('membre/profil.html.twig ')
 
 ---------------
 ***CONNEXION/SECURITY**
@@ -98,3 +98,9 @@ return ('home/index.html.twig')
 ------------------
 @Route("/register", name="app_register")
     return $this->render('registration/register.html.twig')
+
+-----------------
+***PROFIL***
+------------------
+@Route("/profil", name="profil_index")
+    return $this->render("membre/profil.html.twig");

@@ -231,6 +231,8 @@ class Membre implements UserInterface
         return $this;
     }
 
+
+    
     /**
      * @return Collection|Commande[]
      */
@@ -261,6 +263,9 @@ class Membre implements UserInterface
 
         return $this;
     }
+
+
+
 
     public function getPrenom(): ?string
     {

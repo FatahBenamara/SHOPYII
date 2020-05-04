@@ -1,0 +1,62 @@
+------------------
+***GetMembre***
+-------------------
+->getId()
+->getEmail()
+->getUsername
+->getRole()
+->getPassword()
+->getPseudo()
+->getSalt
+->getNom()
+->getPrenom()
+->getCivilite()
+->getVille()
+->getCodePostal()
+->getAdresse()
+->getCommandes ^^[]
+
+-----------------
+***GetProduit***
+-----------------
+->getId()
+->getCategorie() detail.produit.categorie
+->getStock() detail.produit.stock
+->getPrix()
+->getPhoto()
+->getPublic()
+->getTaille()
+->getCouleur()
+->getDescription()
+->getTitre()
+->getReference()
+->getDetails ^^[]
+
+-----------------
+***GetCommande***
+------------------
+->getId()
+->getEtat()
+->getDateEnregistrement()
+->getMontant()
+->getDetails ^^[]
+->getMembre ^^
+
+----------------
+***GetDetail***
+----------------
+->getId()
+->getProduit() ^^
+->getCommande() ^^
+->getPrix()
+->getQuantite()
+
+
+
+
+
+
+
+
+
+

@@ -26,6 +26,67 @@
         </tbody>
     </table>
 
+
+
+    
+    <h1>Detail de la commande:  {{commande.details|length}} </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Titre produit</th>
+                <th>Image</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>Total</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detail in commande.details %}
+            <tr>
+                
+                <td>{{ detail.produit.titre }}</td>
+                <td><img class="" src="{{ asset("images/" ~ detail.produit.photo) }} " width="140" height="140"></td>
+                <td>{{ detail.quantite }}</td>
+                <td>{{ detail.prix }}</td>
+                <td>{{ detail.prix * detail.quantite }} €</td> 
+                
+                <td>
+                    <a href="{{ path('produit_show', {'id': detail.produit.id}) }}">produit</a>
+                    <a href="{{ path('detail_show', {'id': detail.id}) }}">show</a>
+                    <a href="{{ path('detail_edit', {'id': detail.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
     <a href="{{ path('commande_index') }}">back to list</a>
 
     <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>

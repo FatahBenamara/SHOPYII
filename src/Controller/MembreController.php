@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Password;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class MembreController extends AbstractController
@@ -92,4 +93,16 @@ class MembreController extends AbstractController
 
         return $this->redirectToRoute('membre_index');
     }
+
+    /**
+     * @Route("/profil", name="profil_index")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function profil(){
+        
+        return $this->render("profil/profil.html.twig");
+    }
+
+
+
 }
