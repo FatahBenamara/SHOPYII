@@ -25,7 +25,16 @@
 						<li class="list-group-item">{{ produit.categorie }}</li>
 					</ul>
 					<p>
-						<a class="btn btn-secondary" href="{{ path('produit_show', {'id': produit.id}) }}" role="button">View details &raquo;</a>
+						<a class="btn btn-secondary" href="{{ path('produit_show', { id: produit.id}) }}" role="button">View details &raquo;</a>
+
+						<form method="get" action="{{ path('addtopanier', { id: produit.id}) }}" >
+							<input type="number" name="qte">
+							<button class="">
+								<i class="btn btn-secondary " >Panier &raquo;</i>
+							</button>
+						</form>
+						
+						
 					</p>
 				</div>
 			{% endfor %}

@@ -104,3 +104,9 @@ return ('home/index.html.twig') => return ('membre/profil.html.twig ')
 ------------------
 @Route("/profil", name="profil_index")
     return $this->render("membre/profil.html.twig");
+
+-----------------
+***PANIER***
+------------------
+@Route("/panier", name="panier")
+    return $this->render('panier/index.html.twig')

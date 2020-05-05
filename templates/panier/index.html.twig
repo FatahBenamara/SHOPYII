@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered mt-5">
+
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Titre</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <td>Quantité</td>
+                <td>Prix Total</td>
+
+
+                <th>actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+            {% for ligne in paniers %}
+                <tr>
+                    
+                    <td>{{ ligne.produit.reference }}</td>
+                    <td>{{ ligne.produit.titre }}</td>
+                    <td><img class="" src="{{ asset("images/" ~ ligne.produit.photo) }} " width="60" height="60"></td>
+                    <td>{{ ligne.produit.prix }}</td>
+                    <td>{{ ligne.qte }}</td>
+                    <td>{{ ligne.qte * ligne.produit.prix }}</td>
+                
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="12">no records found</td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+
+    </table>
+    <a href="{{ path("vider_panier") }}">Vider</a>
+{% endblock %}

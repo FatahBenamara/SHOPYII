@@ -26,9 +26,6 @@
 					<a class="dropdown-item" href="{{ path("detail_index") }}">Details</a>
 					<a class="dropdown-item" href="{{ path("membre_index") }}">Membres</a>
 					<a class="dropdown-item" href="{{ path("commande_index") }}">Commandes</a>
-
-					
-				
 				</div>
 			</li>
 {% endif %}		
@@ -37,22 +34,20 @@
 
 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
 			<li class="nav-item active">
-				<a class="nav-link" href="{{ path("profil_index") }}">Profil
-					<span class="sr-only">(current)</span>
-				</a>
+				<a class="nav-link" href="{{ path("profil_index") }}">Profil</a>
 			</li>
 
 			<li class="nav-item active">
-				<a class="nav-link" href="{{ path("app_logout") }}">Se déconnecter
-					<span class="sr-only">(current)</span>
-				</a>
+				<a class="nav-link" href="{{ path("app_logout") }}">Se déconnecter</a>
+			</li>
+			
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ path("panier") }}"> Mon panier</a>
 			</li>
 
 {% else %}		
 			<li class="nav-item active">
-				<a class="nav-link" href="{{ path("app_login") }}">Se connecter
-					<span class="sr-only">(current)</span>
-				</a>
+				<a class="nav-link" href="{{ path("app_login") }}">Se connecter</a>
 			</li>
 
 
@@ -66,6 +61,6 @@
 		<form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+		</form>	
 	</div>
 </nav>
