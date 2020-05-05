@@ -1,27 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil | Boutique{% endblock %}
+{% block title %}Accueil | Boutique
+{% endblock %}
 
 {% block body %}
-    <div class="row mt-4">
-    {% for produit in liste %}
-        <div class="col-4 my-2">
-            <div class="card"  margin-right: 0;margin-left: 0;"">
-                <img class="card-img-top mx-auto" src="{{ asset("images/" ~ produit.photo ) }}" alt="{{ produit.titre }}">
-                
-                <div class="card-body">
-                    <h5 class="card-title">Nom : {{ produit.titre }}</h5>
-                    <p class="card-text">Référence : {{ produit.reference }}</p>
-                    <p class="card-text">Catégorie : {{ produit.categorie }}</p>
-                    <p class="card-text">Description : {{ produit.description }}</p>
-                    <p class="card-text">Prix : {{ produit.prix }} €</p>
-                    <p class="card-text">Stock : {{ produit.stock }}</p>
-                    <a href="{{ path("produit_show", { id: produit.id }) }}" class="btn btn-primary">Voir</a>
-                 
-                 
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    </div>
+
+
+	<div class="row">
+        <div class="col-lg-3">
+            <ul class="list-group">
+                <li class="list-group-item active">Tous les Produits</a></li>  
+          </div>
+        
+		<div class="row col-lg-12">
+			{% for produit in produits %}
+				<div class="col-lg-4">
+					<img class="" src="{{ asset("images/" ~ produit.photo) }}" alt="Generic placeholder image" width="140" height="140">
+					<h2>{{ produit.titre }}</h2>
+					<p class="card text-center">{{ produit.description }}</p>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ produit.prix }}
+							$</li>
+						<li class="list-group-item">{{ produit.stock }}</li>
+						<li class="list-group-item">{{ produit.categorie }}</li>
+					</ul>
+					<p>
+						<a class="btn btn-secondary" href="{{ path('produit_show', {'id': produit.id}) }}" role="button">View details &raquo;</a>
+					</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
 {% endblock %}

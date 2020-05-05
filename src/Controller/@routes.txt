@@ -56,21 +56,21 @@ return ('home/index.html.twig') => return ('membre/profil.html.twig ')
 -------------
 ***DETAIL***
 --------------
-@Route("/detail", name="detail_index", methods={"GET"}) 
+@Route("/admin/detail", name="detail_index", methods={"GET"}) 
     return $this->render('detail/index.html.twig')
 
-@Route("/detail/new", name="detail_new", methods={"GET","POST"})
+@Route("/admin/detail/new", name="detail_new", methods={"GET","POST"})
     return ('detail_index');
     return ('detail/new.html.twig')
 
-@Route("/detail/{id}", name="detail_show", methods={"GET"})
+@Route("/admin/detail/{id}", name="detail_show", methods={"GET"})
     return ('detail/show.html.twig')
 
-@Route("/detail/{id}/edit", name="detail_edit", methods={"GET","POST"})
+@Route("/admin/detail/{id}/edit", name="detail_edit", methods={"GET","POST"})
     return ('detail_index')
     return $this->render('detail/edit.html.twig' );
 
- @Route("/detail/{id}", name="detail_delete", methods={"DELETE"})
+ @Route("/admin/detail/{id}", name="detail_delete", methods={"DELETE"})
     return $this->redirectToRoute('detail_index');
 
 -------------

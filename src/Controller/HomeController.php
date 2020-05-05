@@ -15,6 +15,6 @@ class HomeController extends AbstractController
     {
 
         $liste_produits = $pr->findAll();
-        return $this->render('home/index.html.twig', [ "liste" => $liste_produits ]);
+        return $this->render('home/index.html.twig', [ "produits" => $liste_produits ]);
     }
 }
