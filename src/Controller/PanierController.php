@@ -54,14 +54,8 @@ class PanierController extends AbstractController
         }
         $this->addFlash("success", "Le produit a été ajouté dans votre panier");
         $si->set("paniers", $paniers);
-
-
-
-
         return $this->redirectToRoute("home");
     }
-
-
 
 
     /**
@@ -76,12 +70,36 @@ class PanierController extends AbstractController
     }
 
 
+    /**
+     * @Route("/panier/supprimer-produit/{id}", name="supprimer_produit_panier")
+     */
+    public function supprimerProduit(SessionInterface $si, $id){
+        $paniers = $si->get("paniers");
+        foreach($paniers as $indice => $ligne){
+            if($ligne["produit"]->getId() == $id){
+                unset($paniers[$indice]);
+                break;
+            }
+        }
+        $si->set("paniers", $paniers);
+        return $this->redirectToRoute("panier");
+    }
 
 
-
-
-
-
-
+    /**
+     * @Route("/panier/modifier-produit/{id}", name="modifier_produit_panier")
+     */
+    public function modifierQuantite(SessionInterface $si, Request $request, $id){
+        $paniers = $si->get("paniers");
+        $qte = $request->query->get("qte");
+        foreach($paniers as $indice => $ligne){
+            if($ligne["produit"]->getId() == $id){
+                $paniers[$indice]["qte"] = $qte;
+                break;
+            }
+        }
+        $si->set("paniers", $paniers);
+        return $this->redirectToRoute("panier");
+    }
 
 }

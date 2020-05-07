@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Membre;
-use App\Form\MembreType;
+use App\Form\MembreType, App\Form\ProfilType;
 use App\Repository\MembreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Password;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 
 class MembreController extends AbstractController
@@ -98,9 +99,39 @@ class MembreController extends AbstractController
      * @Route("/profil", name="profil_index")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function profil(){
+    public function profilIndex(){
         
         return $this->render("profil/profil.html.twig");
+    }
+
+
+    /**
+     * @Route("/profil/edit", name="profil_membre_edit", methods={"GET","POST"})
+     */
+    public function profilEdit(Request $request, MembreRepository $mr): Response
+    {
+        $membre=$this->getUser();
+        $form = $this->createForm(MembreType::class, $membre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if($mdp = $form->get("password")->getData()){
+                $membre->setPassword(password_hash($mdp, PASSWORD_DEFAULT));
+            } else {
+               $membre->setPassword($mr->find($membre->getId())->getPassword());  
+            }
+
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profil_index');
+        }
+
+        return $this->render('membre/edit.html.twig', [
+            'membre' => $membre,
+            'form' => $form->createView(),
+        ]);
     }
 
 

@@ -33,7 +33,7 @@ class Detail
     private $commande;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="details")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="details", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $produit;

@@ -34,7 +34,7 @@ class Commande
     private $etat;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Detail", mappedBy="commande", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Detail", mappedBy="commande", orphanRemoval=true, cascade={"persist"})
      */
     private $details;
 

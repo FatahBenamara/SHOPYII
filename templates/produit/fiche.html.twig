@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+    <h1>{{ produit.titre|upper }}</h1>
+    
+    <form method="get" action="{{ path('addtopanier', { id: produit.id}) }}" >
+        <input type="number" name="qte">
+        <button class="">
+            <i class="btn btn-secondary " >Panier &raquo;</i>
+        </button>
+    </form>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ produit.id }}</td>
+			</tr>
+			<tr>
+				<th>Reference</th>
+				<td>{{ produit.reference }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ produit.titre }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ produit.description }}</td>
+			</tr>
+			<tr>
+				<th>Couleur</th>
+				<td>{{ produit.couleur }}</td>
+			</tr>
+			<tr>
+				<th>Taille</th>
+				<td>{{ produit.taille }}</td>
+			</tr>
+			<tr>
+				<th>Public</th>
+				<td>{{ produit.public }}</td>
+			</tr>
+			<tr>
+				<th>Photo</th>
+
+				<td><img class="" src="{{ asset("images/" ~ produit.photo) }}" alt="Generic placeholder image" width="140" height="140"></td>
+
+			</tr>
+			<tr>
+				<th>Prix</th>
+				<td>{{ produit.prix }}</td>
+			</tr>
+			<tr>
+				<th>Stock</th>
+				<td>{{ produit.stock }}</td>
+			</tr>
+			<tr>
+				<th>Categorie</th>
+				<td>{{ produit.categorie }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('home') }}">Accueil</a>
+
+{% endblock %}

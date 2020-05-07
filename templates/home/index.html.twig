@@ -7,9 +7,8 @@
 
 
 	<div class="row">
-        <div class="col-lg-3">
-            <ul class="list-group">
-                <li class="list-group-item active">Tous les Produits</a></li>  
+        <div class="col-lg-4">
+				<h1>Tous les Produits</h1> 
           </div>
         
 		<div class="row col-lg-12">
@@ -25,7 +24,7 @@
 						<li class="list-group-item">{{ produit.categorie }}</li>
 					</ul>
 					<p>
-						<a class="btn btn-secondary" href="{{ path('produit_show', { id: produit.id}) }}" role="button">View details &raquo;</a>
+						<a class="btn btn-secondary" href="{{ path('profil_produit_show', { id: produit.id}) }}" role="button">View details &raquo;</a>
 
 						<form method="get" action="{{ path('addtopanier', { id: produit.id}) }}" >
 							<input type="number" name="qte">
@@ -33,7 +32,6 @@
 								<i class="btn btn-secondary " >Panier &raquo;</i>
 							</button>
 						</form>
-						
 						
 					</p>
 				</div>

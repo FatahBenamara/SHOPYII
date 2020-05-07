@@ -54,9 +54,9 @@
                 <td>{{ detail.prix * detail.quantite }} €</td> 
                 
                 <td>
-                    <a href="{{ path('produit_show', {'id': detail.produit.id}) }}">produit</a>
-                    <a href="{{ path('detail_show', {'id': detail.id}) }}">show</a>
-                    <a href="{{ path('detail_edit', {'id': detail.id}) }}">edit</a>
+                    <a href="{{ path('profil_produit_show', {'id': detail.produit.id}) }}">produit</a>
+                       {# <a href="{{ path('detail_show', {'id': detail.id}) }}">show</a>#}
+                 {#  <a href="{{ path('detail_edit', {'id': detail.id}) }}">edit</a>#} 
                 </td>
             </tr>
         {% else %}
@@ -69,27 +69,11 @@
 
 
 
-
-
-
-
-
-
-
+   {# <a href="{{ path('commande_index') }}">back to list</a>#}
+    <a href="{{ path('home') }}">Accueil</a>
 
     
+   {# <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
 
-
-
-
-
-
-
-
-
-    <a href="{{ path('commande_index') }}">back to list</a>
-
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
-
-    {{ include('commande/_delete_form.html.twig') }}
+    {{ include('commande/_delete_form.html.twig') }}#}
 {% endblock %}
