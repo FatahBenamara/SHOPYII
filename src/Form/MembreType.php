@@ -24,8 +24,8 @@ class MembreType extends AbstractType
                     'Super Admin' => 'ROLE_SUPER_ADMIN'
                 ),
                 //'required'  => true,
-                // 'multiple' => true,
-                // "label" => "Rôles"
+               // "multiple" => true,
+                //"label" => "Rôles"
 
             ))
 

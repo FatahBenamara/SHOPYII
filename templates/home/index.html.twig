@@ -7,36 +7,57 @@
 
 
 	<div class="row">
-        <div class="col-lg-4">
+ 
+		
+ 		<div class="col-lg-4">
 				<h1>Tous les Produits</h1> 
-          </div>
+				<br>
+				
+		</div>
         
 		<div class="row col-lg-12">
-			{% for produit in produits %}
-				<div class="col-lg-4">
-					<img class="" src="{{ asset("images/" ~ produit.photo) }}" alt="Generic placeholder image" width="140" height="140">
-					<h2>{{ produit.titre }}</h2>
-					<p class="card text-center">{{ produit.description }}</p>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">{{ produit.prix }}
-							$</li>
-						<li class="list-group-item">{{ produit.stock }}</li>
-						<li class="list-group-item">{{ produit.categorie }}</li>
-					</ul>
-					<p>
-						<a class="btn btn-secondary" href="{{ path('profil_produit_show', { id: produit.id}) }}" role="button">View details &raquo;</a>
+			{% if mot_recherche is defined %}
+				<h1>Recherche : {{ mot_recherche }}</h1>
+			
+			{% endif %}
 
-						<form method="get" action="{{ path('addtopanier', { id: produit.id}) }}" >
-							<input type="number" name="qte">
-							<button class="">
-								<i class="btn btn-secondary " >Panier &raquo;</i>
-							</button>
-						</form>
-						
-					</p>
-				</div>
-			{% endfor %}
+			{% if produits|length  %}
+      
+				{% for produit in produits %}
+					<div class="col-lg-4">
+						<img class="" src="{{ asset("images/" ~ produit.photo) }}" alt="Generic placeholder image" width="140" height="140">
+						<h2>{{ produit.titre }}</h2>
+						<p class="card text-center">{{ produit.description }}</p>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">{{ produit.prix }} $</li>
+							<li class="list-group-item">{{ produit.stock }}</li>
+							<li class="list-group-item">{{ produit.categorie }}</li>
+						</ul>
+						<p>
+							<a class="btn btn-secondary" href="{{ path('profil_produit_show', { id: produit.id}) }}" role="button">View details &raquo;</a>
+
+							<form method="get" action="{{ path('addtopanier', { id: produit.id}) }}" >
+								<input type="number" name="qte">
+								<button class="">
+									<i class="btn btn-secondary " >Panier &raquo;</i>
+								</button>
+							</form>
+							
+						</p>
+					</div>
+				{% endfor %}
+			
+			{% else %}
+	
+				<p class="alert alert-warning">Aucun produit ne correspond à votre recherche</p>
+
+			{% endif %}	
+
+
 		</div>
+
+
+
 	</div>
 
 

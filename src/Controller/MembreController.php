@@ -111,7 +111,7 @@ class MembreController extends AbstractController
     public function profilEdit(Request $request, MembreRepository $mr): Response
     {
         $membre=$this->getUser();
-        $form = $this->createForm(MembreType::class, $membre);
+        $form = $this->createForm(ProfilType::class, $membre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
